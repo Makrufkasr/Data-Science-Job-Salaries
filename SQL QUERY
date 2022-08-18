@@ -1,0 +1,20 @@
+SELECT int64_field_0 row_id,
+       work_year,
+       experience_level,
+       employment_type,
+       job_title,
+       CASE WHEN job_title like '%Engineer%' Then 'Data Engineer'
+            WHEN job_title like'%Analyst%'  Then 'Data Analyst'
+            WHEN job_title like '%Scientist%' Then 'Data Scientist'
+            WHEN job_title like '%Science%' Then 'Data Scientist'
+            WHEN job_title like '%Machine Learning%' Then 'Machine Learning Developer'
+            end group_title_job,
+       salary_in_usd,
+       b.name employee_residence,
+       remote_ratio,
+       b.sub_region company_location,
+       company_size
+FROM `makrufbinar.salary_data.salary` a
+LEFT JOIN `makrufbinar.salary_data.code_region` b
+ON a.employee_residence = b. alpha_2
+ORDER BY int64_field_0 asc
